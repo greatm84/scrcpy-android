@@ -38,9 +38,9 @@ public final class DroidConnection implements Closeable {
 
         socket = listenAndAccept();
         DroidConnection connection = null;
-        if (socket.getInetAddress().toString().equals(ip)) {
+//        if (socket.getInetAddress().toString().equals(ip)) {
             connection = new DroidConnection(socket);
-        }
+//        }
         return connection;
     }
 

@@ -95,15 +95,15 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             setContentView(R.layout.activity_main);
             final Button startButton = (Button) findViewById(R.id.button_start);
-            AssetManager assetManager = getAssets();
-            try {
-                inputStream = assetManager.open("scrcpy-server.jar");
-                byte[] buffer = new byte[inputStream.available()];
-                inputStream.read(buffer);
-                fileBase64 = Base64.encode(buffer, 2);
-            } catch (IOException e) {
-                Log.e("Asset Manager", e.getMessage());
-            }
+//            AssetManager assetManager = getAssets();
+//            try {
+//                inputStream = assetManager.open("scrcpy-server.jar");
+//                byte[] buffer = new byte[inputStream.available()];
+//                inputStream.read(buffer);
+//                fileBase64 = Base64.encode(buffer, 2);
+//            } catch (IOException e) {
+//                Log.e("Asset Manager", e.getMessage());
+//            }
             sendCommands = new SendCommands();
             startButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -111,15 +111,16 @@ public class MainActivity extends Activity implements Scrcpy.ServiceCallbacks, S
                     localip = wifiIpAddress();
                     getAttributes();
                     if (!serverAdr.isEmpty()) {
-                        if (sendCommands.SendAdbCommands(context, fileBase64, serverAdr, localip, videoBitrate, Math.max(screenHeight, screenWidth)) == 0) {
-                            if (nav) {
-                                startwithNav();
-                            } else {
-                                startwithoutNav();
-                            }
-                        } else {
-                            Toast.makeText(context, "Network OR ADB connection failed", Toast.LENGTH_SHORT).show();
-                        }
+                        startwithNav();
+//                        if (sendCommands.SendAdbCommands(context, fileBase64, serverAdr, localip, videoBitrate, Math.max(screenHeight, screenWidth)) == 0) {
+//                            if (nav) {
+//                                startwithNav();
+//                            } else {
+//                                startwithoutNav();
+//                            }
+//                        } else {
+//                            Toast.makeText(context, "Network OR ADB connection failed", Toast.LENGTH_SHORT).show();
+//                        }
                     } else {
                         Toast.makeText(context, "Server Address Empty", Toast.LENGTH_SHORT).show();
                     }
